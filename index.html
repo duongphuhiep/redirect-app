@@ -7,49 +7,81 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <title>LemonWay Backoffice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <title>My Website is moved</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            font-size: 150%;
+        }
+        .newroute {
+            text-align: center;
+        } 
+        .newroute a {
+            background: yellow;
+        }
+        .redirect {
+            padding: 2rem 0;
+        }
+        .tips {
+            border: gray solid;
+            padding: 2rem;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app">
-        <h1>Hello App!</h1>
-        <p>
-            <router-link to="/foo">Go to Foo</router-link>
-            <router-link to="/bar">Go to Bar</router-link>
-        </p>
-        <!-- route outlet -->
-        <!-- component matched by the route will render here -->
-        <router-view></router-view>
-    </div>
+    <div id="app" />     
 </body>
 
-<script>
-    const Foo = {
-        template: '<div>foo</div>'
-    }
-    const Bar = {
-        template: '<div>bar</div>'
-    }
+<script type="text/x-template" id="main">
+    <div>
+        <h1>The website is moved to the new location</h1>
+        <p class="newroute"><a :href="newRoute">{{newRoute}}</a></p>
+        <p class="redirect">You will be redirected in <b>{{count}}s</b> ...</p>
+        <p class="tips"><i class="fas fa-info-circle" /> Save the new URL for next time to bypass this screen</p>
+    </div>
+</script>
 
-    const routes = [{
-        path: '/foo',
-        component: Foo
-    }, {
-        path: '/bar',
-        component: Bar
-    }]
+<script>
+    /**
+    this function transform a route url to a new one. You will have to replace it with your own transformation
+    - input is a parsed route object 
+    - output is the new URL (a string)
+    */
+    function transform(route) {
+        return "/new-website"+route.fullPath;
+    }
 
     const router = new VueRouter({
         mode: 'history',
-        routes
     })
-    router.beforeEach((to, from, next) => {
-            console.log(to, from);
-            next();
-        });
 
     const app = new Vue({
-        router
+        router,
+        template: '#main',
+        data: {
+            count: 10
+        },
+        computed: {
+            newRoute() {
+                return transform(router.currentRoute);
+            }
+        },
+        methods: {
+            decreaseTimer: function() {
+                this.count--;
+                if (this.count < 1) {
+                    location.replace(this.newRoute);
+                }
+            }
+        },
+        mounted() {
+            setInterval(this.decreaseTimer, 1000);
+        }
     }).$mount('#app')
 </script>
 

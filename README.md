@@ -1,7 +1,5 @@
 # Template project for URL Transformation and Redirection app
 
-Status: work in progress..
-
 When we move a website to a new location. We want to inform the visitors about the new location then redirect them to the new location.
 
 A **redirection-app** will be deployed in the old location of the website. It will welcome all visitors to the old website and

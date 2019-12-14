@@ -11,35 +11,32 @@
 </head>
 
 <body>
-    <div id="app">
-        <h1>New Website</h1>
-        <current-route />
-    </div>
-    <p style="border: gray solid; padding: 2em">
-        If you arrive here coming from the old Website then.. Congratulation, it means that the <b>redirection-app</b> is working.
-        Now all you have to do is to adapt the <b><code>index.html</code></b> to suite your situation.
-    </p>
+    <div id="app" /> 
 </body>
+
+<script type="text/x-template" id="main">
+    <div>
+        <h1>New Website</h1>
+        <p>The current path is <code style="background:yellow">{{route}}</code></p>
+        <p style="border: gray solid; padding: 2em">
+            If you arrive here coming from the old Website then.. Congratulation, it means that the <b>redirection-app</b> is working.
+            Now all you have to do is to adapt the <b><code>index.html</code></b> to suite your situation.
+        </p>            
+    </div>
+</script>
 
 <script>
     const router = new VueRouter({
         mode: 'history',
     })
-    const CurrentRoute = {
-        template: `
-        <div>The current path is <code style="background:yellow">{{route}}</code></div>
-        `,
+    const app = new Vue({
+        router,
+        template: '#main',
         computed: {
             route() {
                 return router.currentRoute.fullPath;
             }
         } 
-    };
-    const app = new Vue({
-        router,
-        components: {
-            'current-route': CurrentRoute
-        }
     }).$mount('#app')
 </script>
 
