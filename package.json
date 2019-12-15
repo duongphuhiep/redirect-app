@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Redirection App Template project",
   "main": "index.html",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "test": "node run.js"
   },
@@ -22,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/duongphuhiep/redirect-app/issues"
   },
-  "homepage": "https://github.com/duongphuhiep/redirect-app#readme",
+  "homepage": "https://github.com/duongphuhiep/redirect-app",
   "devDependencies": {
     "live-server": "^1.2.1"
   }
