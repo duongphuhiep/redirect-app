@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+This application is based on https://github.com/duongphuhiep/redirect-app
+(Please keep this comment)
+-->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
@@ -17,15 +21,19 @@
             padding: 2rem;
             font-size: 150%;
         }
+        
         .newroute {
             text-align: center;
-        } 
+        }
+        
         .newroute a {
             background: yellow;
         }
+        
         .redirect {
             padding: 2rem 0;
         }
+        
         .tips {
             border: gray solid;
             padding: 2rem;
@@ -34,7 +42,7 @@
 </head>
 
 <body>
-    <div id="app" />     
+    <div id="app" />
 </body>
 
 <script type="text/x-template" id="main">
@@ -48,21 +56,21 @@
 
 <script>
     /**
-    this function transform a route url to a new one. You will have to replace it with your own transformation
-    - input is a parsed route object 
-    - output is the new URL (a string)
-    */
+        this function transform a route url to a new one. You will have to replace it with your own transformation
+        - input is a parsed route object 
+        - output is the new URL (a string)
+        */
     function transform(route) {
-        return "/new-website"+route.fullPath;
+        return "/new-website" + route.fullPath;
     }
 
     const router = new VueRouter({
-        mode: 'history',
-    })
+        mode: "history"
+    });
 
     const app = new Vue({
         router,
-        template: '#main',
+        template: "#main",
         data: {
             count: 10
         },
@@ -82,7 +90,7 @@
         mounted() {
             setInterval(this.decreaseTimer, 1000);
         }
-    }).$mount('#app')
+    }).$mount("#app");
 </script>
 
 </html>
